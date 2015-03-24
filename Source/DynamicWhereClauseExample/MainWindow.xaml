@@ -10,10 +10,11 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <local:SearchCriteriaView DataContext="{Binding SearchCriteria}" Grid.Row="0" />
+        <local:SearchCriteriaView DataContext="{Binding SearchCriteriaViewModel}" Grid.Row="0" />
         <Grid Grid.Row="1" Margin="5">
             <Label Content="Results" HorizontalAlignment="Left" />
-            <Button Content="Search" HorizontalAlignment="Right" Padding="5" />
+            <ComboBox ItemsSource="{Binding MatchOptions}" DisplayMemberPath="Description" SelectedValuePath="Operator" SelectedValue="{Binding SearchCriteriaViewModel.SearchOperator}" Width="200" HorizontalAlignment="Right" Margin="0,0,55,0" />
+            <Button Content="Search" HorizontalAlignment="Right" Padding="5" Command="{Binding Search}" />
         </Grid>
         
         <DataGrid Grid.Row="2" ItemsSource="{Binding SearchResults}" />

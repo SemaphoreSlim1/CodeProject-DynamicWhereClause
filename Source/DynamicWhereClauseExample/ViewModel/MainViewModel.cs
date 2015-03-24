@@ -32,6 +32,35 @@ namespace DynamicWhereClauseExample.ViewModel
         }
 
         public SearchCriteriaViewModel SearchCriteriaViewModel { get; private set; }
+
+
+        #region MatchOptions Property
+
+        /// <summary>
+        /// Private member backing variable for <see cref="MatchOptions" />
+        /// </summary>
+        private IEnumerable<SearchOperator> _MatchOptions = null;
+
+        /// <summary>
+        /// Gets and sets how to match the search criteria
+        /// </summary>
+        public IEnumerable<SearchOperator> MatchOptions
+        {
+            get
+            {
+                if (_MatchOptions == null)
+                { _MatchOptions = new SearchOperator[] { 
+                    new SearchOperator{ Description = "Match any criteria", Operator="ANY" }, 
+                    new SearchOperator{ Description = "Match all criteria", Operator = "ALL"} }; 
+                }
+
+                return _MatchOptions;
+            }
+            set { Set(() => MatchOptions, ref _MatchOptions, value); }
+        }
+
+        #endregion
+
         
         #region Search Command
 
