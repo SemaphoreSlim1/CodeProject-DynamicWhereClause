@@ -13,6 +13,10 @@ namespace DynamicWhereClauseExample.ViewModel
 {
     public class SearchCriteriaViewModel : ViewModelBase
     {
+        public SearchCriteriaViewModel()
+        {
+            SearchOperator = "ANY";
+        }
 
         #region FirstName Property
 
@@ -74,6 +78,7 @@ namespace DynamicWhereClauseExample.ViewModel
         /// <summary>
         /// Gets and sets the president number search criteria
         /// </summary>
+        [SearchCriteria]
         public String PresidentNumber
         {
             get
@@ -98,6 +103,7 @@ namespace DynamicWhereClauseExample.ViewModel
         /// <summary>
         /// Gets and sets the party search criteria
         /// </summary>
+        [SearchCriteria]
         public String Party
         {
             get
@@ -122,15 +128,10 @@ namespace DynamicWhereClauseExample.ViewModel
         /// <summary>
         /// Gets and sets the president's start date search criteria
         /// </summary>
-        public DateTime StartDate
+        [SearchCriteria]
+        public Nullable<DateTime> StartDate
         {
-            get
-            {
-                if (_StartDate.HasValue == false)
-                { _StartDate = DateTime.MinValue; }
-
-                return _StartDate.Value;
-            }
+            get { return _StartDate; }
             set { Set(() => StartDate, ref _StartDate, value); }
         }
 
@@ -146,15 +147,10 @@ namespace DynamicWhereClauseExample.ViewModel
         /// <summary>
         /// Gets and sets the end date search criteria
         /// </summary>
-        public DateTime EndDate
+        [SearchCriteria]
+        public Nullable<DateTime> EndDate
         {
-            get
-            {
-                if (_EndDate.HasValue == false)
-                { _EndDate = DateTime.MaxValue; }
-
-                return _EndDate.Value;
-            }
+            get { return _EndDate; }
             set { Set(() => EndDate, ref _EndDate, value); }
         }
 
@@ -170,6 +166,7 @@ namespace DynamicWhereClauseExample.ViewModel
         /// <summary>
         /// Gets and sets the search criteria for the number of terms
         /// </summary>
+        [SearchCriteria]
         public String TermCount
         {
             get
@@ -236,13 +233,13 @@ namespace DynamicWhereClauseExample.ViewModel
                 result = AppendExpression(result, expr);
             }
 
-            if(StartDate > DateTime.MinValue)
+            if(StartDate.HasValue)
             {
                 Expression<Func<Model.President, Boolean>> expr = model => model.TookOffice >= StartDate;
                 result = AppendExpression(result, expr);
             }
 
-            if(EndDate < DateTime.MaxValue)
+            if(EndDate.HasValue)
             {
                 Expression<Func<Model.President, Boolean>> expr = model => model.LeftOffice <= EndDate;
                 result = AppendExpression(result, expr);
