@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{8F7E5CE0-BA24-42A0-A3A2-9BA24930F82A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicWhereClauseMvc", "DynamicWhereClauseMvc\DynamicWhereClauseMvc.csproj", "{3F193DA7-867B-4EA1-A083-F888942EFCD3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{8F7E5CE0-BA24-42A0-A3A2-9BA24930F82A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F7E5CE0-BA24-42A0-A3A2-9BA24930F82A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F7E5CE0-BA24-42A0-A3A2-9BA24930F82A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F193DA7-867B-4EA1-A083-F888942EFCD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F193DA7-867B-4EA1-A083-F888942EFCD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F193DA7-867B-4EA1-A083-F888942EFCD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F193DA7-867B-4EA1-A083-F888942EFCD3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
