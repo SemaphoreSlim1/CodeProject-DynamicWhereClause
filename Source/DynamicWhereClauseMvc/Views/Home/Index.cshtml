@@ -1,43 +1,43 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
 }
+
 
 <h2>Search Criteria</h2>
 <table>
     <tr>
         <td>First Name</td>
-        <td><input type="text" /></td>
+        <td><input type="text" data-bind="value: FirstName" /></td>
     </tr>
     <tr>
         <td>Last Name</td>
-        <td><input type="text" /></td>
+        <td><input type="text" data-bind="value: LastName" /></td>
     </tr>
     <tr>
         <td>Predident Number</td>
-        <td><input type="number" /></td>
+        <td><input type="number" data-bind="value: PresidentNumber" /></td>
     </tr>
     <tr>
         <td>Start Date</td>
-        <td><input type="date" /></td>
+        <td><input type="date" data-bind="value: StartDate" /></td>
     </tr>
     <tr>
         <td>End Date</td>
-        <td><input type="date" /></td>
+        <td><input type="date" data-bind="value: EndDate" /></td>
     </tr>
     <tr>
         <td>Term Count</td>
-        <td><input type="number" /></td>
+        <td><input type="number" data-bind="value: TermCount" /></td>
     </tr>
     <tr>
         <td>
-            <select>
+            <select data-bind="value: SearchOperator">
                 <option value="ANY">Match any criteria</option>
                 <option value="ALL">Match all criteria</option>
             </select>
         </td>
         <td>
-            <input type="button" value="Search" />
+            <input type="button" value="Search" data-bind="click:Search" />
         </td>
     </tr>
 </table>
