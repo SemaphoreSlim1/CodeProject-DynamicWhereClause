@@ -1,0 +1,74 @@
+﻿@model DynamicWhereMvc.Models.SearchModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>    
+    <title>Index</title>
+</head>
+<body>
+    <h2>Search Criteria</h2>
+    @using (Html.BeginForm()) { 
+    <table>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.FirstName)</td>            
+            <td>@Html.TextBoxFor(model => model.FirstName)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.LastName)</td>
+            <td>@Html.TextBoxFor(model => model.LastName)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.PresidentNumber)</td>
+            <td>@Html.TextBoxFor(model => model.PresidentNumber)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.StartDate)</td>
+            <td>@Html.TextBoxFor(model => model.StartDate)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.EndDate)</td>
+            <td>@Html.TextBoxFor(model => model.EndDate)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.TermCount)</td>
+            <td>@Html.TextBoxFor(model => model.TermCount)</td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DropDownListFor(model => model.SearchOperator, new SelectList(
+                         new Object[] { 
+                            new { text="Match any criteria", value="ANY"},
+                            new { text="Match all criteria", value="ALL"}
+                         },
+                         "value",
+                         "text",
+                         Model.SearchOperator
+               ))                
+            </td>
+            <td>
+                <input type="submit" value="Search"  />
+            </td>
+        </tr>
+    </table>
+    <div style="height:20px;" />
+    <table>
+        @foreach (var president in Model.SearchResults)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => president.FirstName)</td>
+                <td>@Html.DisplayFor(modelItem => president.LastName)</td>
+                <td>@Html.DisplayFor(modelItem => president.PresidentNumber)</td>
+                <td>@Html.DisplayFor(modelItem => president.TookOffice)</td>
+                <td>@Html.DisplayFor(modelItem => president.LeftOffice)</td>
+                <td>@Html.DisplayFor(modelItem => president.Terms)</td>
+            </tr>
+        }
+    </table>
+    }
+</body>
+</html>

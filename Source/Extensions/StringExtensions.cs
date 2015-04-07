@@ -16,8 +16,6 @@ namespace Extensions
         public static Boolean Like(this String str, String other)
         {
             return str.ToUpper().Contains(other.ToUpper());
-        }
-
-        
+        }        
     }
 }

@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="DynamicWhereWpf.SearchCriteriaView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+       <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Margin" Value="0,3,0,3" />           
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Label Content="First Name" Grid.Row="0" Grid.Column="0"/>
+        <TextBox Text="{Binding FirstName}" Grid.Row="0" Grid.Column="1" />
+        
+        <Label Content="Last Name" Grid.Row="1" Grid.Column="0" />
+        <TextBox Text="{Binding LastName}" Grid.Row="1" Grid.Column="1" />
+        
+        <Label Content="President Number" Grid.Row="2" Grid.Column="0" />
+        <TextBox Text="{Binding PresidentNumber}" Grid.Row="2" Grid.Column="1" />
+        
+        <Label Content="Start Date" Grid.Row="3" Grid.Column="0" />
+        <DatePicker SelectedDate="{Binding StartDate}" Grid.Row="3" Grid.Column="1" />
+
+        <Label Content="End Date" Grid.Row="4" Grid.Column="0" />
+        <DatePicker SelectedDate="{Binding EndDate}" Grid.Row="4" Grid.Column="1" />
+
+        <Label Content="Term Count" Grid.Row="5" Grid.Column="0" />
+        <TextBox Text="{Binding TermCount}" Grid.Row="5" Grid.Column="1" />
+    </Grid>
+</UserControl>
