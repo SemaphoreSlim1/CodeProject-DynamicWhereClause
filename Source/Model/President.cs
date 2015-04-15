@@ -14,6 +14,7 @@ namespace Model
         public int PresidentNumber { get; set; }
         public DateTime TookOffice { get; set; }
         public DateTime LeftOffice { get; set; }
+        public Boolean IsAlive { get; set; }
 
         public String Party { get; set; }
         public IEnumerable<Term> Terms { get; set; }
@@ -23,6 +24,7 @@ namespace Model
             this.ID = Guid.NewGuid();
             this.FirstName = firstName;
             this.LastName = lastName;
+            this.IsAlive = false;
         }
     }
 

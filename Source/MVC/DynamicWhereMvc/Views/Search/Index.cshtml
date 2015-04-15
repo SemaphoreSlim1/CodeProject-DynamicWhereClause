@@ -39,6 +39,20 @@
             <td>@Html.TextBoxFor(model => model.TermCount)</td>
         </tr>
         <tr>
+            <td>@Html.DisplayNameFor(model => model.LivingStatus)</td>
+            <td>@Html.DropDownListFor(model => model.LivingStatus, new SelectList(
+                 new Object[] { 
+                    new { text = "Select a living status", value="" },
+                    new { text = "Alive or deceased", value="ANY" },
+                    new { text = "Living", value = "ALIVE" },
+                    new { text = "Deceased", value = "DEAD"}
+                 }, 
+                 "value", 
+                 "text", 
+                 Model.LivingStatus
+               ))</td>
+        </tr>
+        <tr>
             <td>
                 @Html.DropDownListFor(model => model.SearchOperator, new SelectList(
                          new Object[] { 

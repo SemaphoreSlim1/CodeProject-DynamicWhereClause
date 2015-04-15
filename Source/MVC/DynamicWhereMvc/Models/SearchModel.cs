@@ -33,6 +33,10 @@ namespace DynamicWhereMvc.Models
         [SearchCriteria]
         public Nullable<DateTime> EndDate { get; set; }
 
+        [DisplayName("Living Status")]
+        [SearchCriteria]
+        public String LivingStatus { get; set; }
+
         [DisplayName("Terms")]
         [SearchCriteria]
         public String TermCount { get; set; }
@@ -56,6 +60,13 @@ namespace DynamicWhereMvc.Models
         {
             Expression<Func<Model.President, Boolean>> result = null;
 
+            int presidentNumberIntValue = 0;
+            if(PresidentNumber.HasValue() && Int32.TryParse(PresidentNumber, out presidentNumberIntValue) && presidentNumberIntValue > 0)
+            {
+                Expression<Func<Model.President, Boolean>> expr = model => model.PresidentNumber == presidentNumberIntValue;
+                result = AppendExpression(result, expr);
+            }
+
             if (FirstName.HasValue())
             {
                 Expression<Func<Model.President, Boolean>> expr = model => model.FirstName.Like(FirstName);
@@ -78,6 +89,23 @@ namespace DynamicWhereMvc.Models
             {
                 Expression<Func<Model.President, Boolean>> expr = model => model.LeftOffice <= EndDate;
                 result = AppendExpression(result, expr);
+            }
+
+            if(LivingStatus.HasValue())
+            {
+                if (LivingStatus.ToUpper() == "ALIVE")
+                {
+                    Expression<Func<Model.President, Boolean>> expr = model => model.IsAlive == true;
+                    result = AppendExpression(result, expr);
+                }else if(LivingStatus.ToUpper() == "DEAD")
+                {
+                    Expression<Func<Model.President, Boolean>> expr = model => model.IsAlive == false;
+                    result = AppendExpression(result, expr);
+                }
+                else {                     
+                    Expression<Func<Model.President, Boolean>> expr = model => model.IsAlive == true || model.IsAlive == false;
+                    result = AppendExpression(result, expr);
+                }
             }
 
             var termCounntIntValue = 0;

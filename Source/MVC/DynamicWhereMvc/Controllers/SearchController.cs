@@ -9,15 +9,22 @@ using System.Web.Mvc;
 namespace DynamicWhereMvc.Controllers
 {
     public class SearchController : Controller
-    {                
+    {           
+        [HttpGet]
+        public ActionResult Index()
+        {
+            return View(new SearchModel());
+        }
+
+        [HttpPost]
         public ActionResult Index(SearchModel search)
         {
-            if(search.HasCriteria())
+            var presidents = PresidentRepository.GetAllPresidents();
+            if (search.HasCriteria())
             {
-                var presidents = PresidentRepository.GetAllPresidents();
                 presidents = presidents.Where(search.ToExpression());
-                search.SearchResults = presidents;
             }
+            search.SearchResults = presidents;
 
             return View(search);
         }

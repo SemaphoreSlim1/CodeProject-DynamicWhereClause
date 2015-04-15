@@ -15,7 +15,8 @@ namespace DynamicWhereWebApi.Controllers
             String presidentNumber = "", 
             DateTime? startDate = null, 
             DateTime? endDate = null, 
-            String termCount = "", 
+            String termCount = "",
+            Boolean? IsAlive = null,
             String searchOperator = "ANY")
         {
             var searchModel = new SearchModel

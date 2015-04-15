@@ -28,12 +28,22 @@ namespace DynamicWhereWebApi
 
         [SearchCriteria]
         public String TermCount { get; set; }
+
+        [SearchCriteria]
+        public Nullable<Boolean> Alive { get; set; }
         
         public String SearchOperator { get; set; }
 
         public Expression<Func<Model.President, Boolean>> ToExpression()
         {
             Expression<Func<Model.President, Boolean>> result = null;
+
+            int presidentNumberIntValue = 0;
+            if(PresidentNumber.HasValue() && Int32.TryParse(PresidentNumber, out presidentNumberIntValue) && presidentNumberIntValue > 0)
+            {
+                Expression<Func<Model.President, Boolean>> expr = model => model.PresidentNumber == presidentNumberIntValue;
+                result = AppendExpression(result, expr);
+            }
 
             if (FirstName.HasValue())
             {
@@ -56,6 +66,12 @@ namespace DynamicWhereWebApi
             if (EndDate.HasValue)
             {
                 Expression<Func<Model.President, Boolean>> expr = model => model.LeftOffice <= EndDate;
+                result = AppendExpression(result, expr);
+            }
+
+            if(Alive.HasValue)
+            {
+                Expression<Func<Model.President, Boolean>> expr = model => model.IsAlive == Alive;
                 result = AppendExpression(result, expr);
             }
 

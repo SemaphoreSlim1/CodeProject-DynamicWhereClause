@@ -18,12 +18,14 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            
+            <RowDefinition Height="Auto" />            
         </Grid.RowDefinitions>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
+        
         <Label Content="First Name" Grid.Row="0" Grid.Column="0"/>
         <TextBox Text="{Binding FirstName}" Grid.Row="0" Grid.Column="1" />
         
@@ -41,5 +43,8 @@
 
         <Label Content="Term Count" Grid.Row="5" Grid.Column="0" />
         <TextBox Text="{Binding TermCount}" Grid.Row="5" Grid.Column="1" />
+        
+        <Label Content="Living Status" Grid.Row="6" Grid.Column="0" />
+        <ComboBox ItemsSource="{Binding LivingStatusOptions}" DisplayMemberPath="Key" SelectedValuePath="Value" SelectedValue="{Binding LivingStatus}" Grid.Row="6" Grid.Column="1"  />
     </Grid>
 </UserControl>

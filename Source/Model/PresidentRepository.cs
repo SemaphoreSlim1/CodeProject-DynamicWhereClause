@@ -322,7 +322,8 @@ namespace Model
                 TookOffice = new DateTime(1977,1,20),
                 LeftOffice = new DateTime(1981,1,20),
                 Party = "Democratic",
-                Terms = new Term[] { new Term(1,1976)}
+                Terms = new Term[] { new Term(1,1976)},
+                IsAlive = true
             });
 
             people.Add(new President("Ronald", "Reagan") { 
@@ -338,7 +339,8 @@ namespace Model
                 TookOffice = new DateTime(1989,1,20),
                 LeftOffice = new DateTime(1993,1,20),
                 Party = "Republican",
-                Terms = new Term[] { new Term(1,1988)}
+                Terms = new Term[] { new Term(1,1988)},
+                IsAlive = true
             });
 
             people.Add(new President("Bill", "Clinton") { 
@@ -346,7 +348,8 @@ namespace Model
                 TookOffice = new DateTime(1993,1,20),
                 LeftOffice = new DateTime(2001,1,20),
                 Party = "Democratic",
-                Terms = new Term[] { new Term(1,1992), new Term(2,1996)}
+                Terms = new Term[] { new Term(1,1992), new Term(2,1996)},
+                IsAlive = true,
             });
 
             people.Add(new President("George W.", "Bush") { 
@@ -354,7 +357,8 @@ namespace Model
                 TookOffice = new DateTime(2001,1,20),
                 LeftOffice = new DateTime(2009,1,20),
                 Party = "Republican",
-                Terms = new Term[] { new Term(1,2000), new Term(2,2004)}
+                Terms = new Term[] { new Term(1,2000), new Term(2,2004)},
+                IsAlive = true,
             });
 
             people.Add(new President("Barack", "Obama") { 
@@ -362,7 +366,8 @@ namespace Model
                 TookOffice = new DateTime(2009,1,20),
                 LeftOffice = new DateTime(2017,1,20),
                 Party = "Democratic",
-                Terms = new Term[] { new Term(1,2008), new Term(2,2012)}
+                Terms = new Term[] { new Term(1,2008), new Term(2,2012)},
+                IsAlive = true
             });
 
 

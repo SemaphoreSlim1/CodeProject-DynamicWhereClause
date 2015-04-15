@@ -10,6 +10,5 @@ namespace DynamicWhereWpf.ViewModel
     {
         public String Description { get; set; }
         public String Operator { get; set; }
-
     }
 }

@@ -155,7 +155,64 @@ namespace DynamicWhereWpf.ViewModel
         }
 
         #endregion
-        
+
+
+        #region LivingStatusOptions Property
+
+        /// <summary>
+        /// Private member backing variable for <see cref="LivingStatusOptions" />
+        /// </summary>
+        private Dictionary<String, String> _LivingStatusOptions = null;
+
+        /// <summary>
+        /// Gets and sets the options for living status
+        /// </summary>
+        public Dictionary<String, String> LivingStatusOptions
+        {
+            get
+            {
+                if (_LivingStatusOptions == null)
+                { 
+                    _LivingStatusOptions = new Dictionary<String, String>();
+                    _LivingStatusOptions.Add("Select a living status", "");
+                    _LivingStatusOptions.Add("Alive or deceased", "ANY");
+                    _LivingStatusOptions.Add("Alive", "ALIVE");
+                    _LivingStatusOptions.Add("Deceased", "DEAD");
+                }
+
+                return _LivingStatusOptions;
+            }
+            set { Set(() => LivingStatusOptions, ref _LivingStatusOptions, value); }
+        }
+
+        #endregion
+
+
+        #region LivingStatus property
+
+        /// <summary>
+        /// private member backing variable for <see cref="LivingStatus" />
+        /// </summary>
+        private String _LivingStatus = null;
+
+        /// <summary>
+        /// Gets and sets the desired living status of the president
+        /// </summary>
+        [SearchCriteria]
+        public String LivingStatus
+        {
+            get
+            {
+                if(_LivingStatus == null)
+                { _LivingStatus = String.Empty; }
+
+                return _LivingStatus;
+            }
+            set { Set(() => LivingStatus, ref _LivingStatus, value); }
+        }
+
+        #endregion
+
         #region TermCount Property
 
         /// <summary>
@@ -221,6 +278,13 @@ namespace DynamicWhereWpf.ViewModel
         {
             Expression<Func<Model.President, Boolean>> result = null;
 
+            int presidentNumberIntValue = 0;
+            if(PresidentNumber.HasValue() && Int32.TryParse(PresidentNumber, out presidentNumberIntValue) && presidentNumberIntValue > 0)
+            {
+                Expression<Func<Model.President, Boolean>> expr = model => model.PresidentNumber == presidentNumberIntValue;
+                result = AppendExpression(result, expr);
+            }
+
             if (FirstName.HasValue())
             {
                 Expression<Func<Model.President, Boolean>> expr = model => model.FirstName.Like(FirstName);
@@ -243,6 +307,25 @@ namespace DynamicWhereWpf.ViewModel
             {
                 Expression<Func<Model.President, Boolean>> expr = model => model.LeftOffice <= EndDate;
                 result = AppendExpression(result, expr);
+            }
+
+            if (LivingStatus.HasValue())
+            {
+                if (LivingStatus.ToUpper() == "ALIVE")
+                {
+                    Expression<Func<Model.President, Boolean>> expr = model => model.IsAlive == true;
+                    result = AppendExpression(result, expr);
+                }
+                else if (LivingStatus.ToUpper() == "DEAD")
+                {
+                    Expression<Func<Model.President, Boolean>> expr = model => model.IsAlive == false;
+                    result = AppendExpression(result, expr);
+                }
+                else
+                {
+                    Expression<Func<Model.President, Boolean>> expr = model => model.IsAlive == true || model.IsAlive == false;
+                    result = AppendExpression(result, expr);
+                }
             }
 
             var termCounntIntValue = 0;
