@@ -27,6 +27,7 @@ namespace DynamicWhereWebApi.Controllers
                 StartDate = startDate,
                 EndDate = endDate, 
                 TermCount = termCount,
+                Alive = IsAlive,
                 SearchOperator = searchOperator
             };
 
